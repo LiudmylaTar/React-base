@@ -1,0 +1,23 @@
+.countWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.countText {
+  padding: 16px 0px;
+}
+.btnWrapper {
+  display: flex;
+  gap: 16px;
+}
+.btnCount {
+  border: 1px solid rgb(199, 161, 80);
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+.btnCount:hover,
+.btnCount:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}

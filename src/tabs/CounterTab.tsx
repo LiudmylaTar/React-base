@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Counter from "../components/Counter/Counter";
 
 export default function CounterTab() {
   const [count, setCount] = useState(1);
@@ -6,10 +7,11 @@ export default function CounterTab() {
   const handleMinusClick = () => setCount(count - 1);
   return (
     <>
-      <h2>Counter</h2>
-      <p>Count value: {count}</p>
-      <button onClick={handleAddClick}>Click add +1</button>
-      <button onClick={handleMinusClick}>Click minus -1</button>
+      <Counter
+        addClick={handleAddClick}
+        count={count}
+        minusClick={handleMinusClick}
+      />
     </>
   );
 }
