@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import FormAddTask from "../components/FormAddTask/FormAddTask";
 import TasksList from "../components/TaskList/TaskList";
@@ -9,6 +10,7 @@ const initialTasks: Task[] = [
   { id: "id-2", text: "Create progect", completed: false },
   { id: "id-3", text: "Create counter component", completed: false },
   { id: "id-4", text: "Create task list", completed: false },
+
 ];
 
 export default function TasksTab() {
