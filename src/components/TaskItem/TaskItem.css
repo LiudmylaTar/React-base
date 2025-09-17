@@ -1,0 +1,17 @@
+.itemWrapper {
+  display: grid;
+  grid-template-columns: 24px 250px 120px;
+  align-items: center;
+  gap: 12px;
+}
+
+.complete {
+  color: rgb(38, 138, 38);
+}
+.progress {
+  color: rgb(177, 122, 5);
+}
+.taskText {
+  font-size: 16px;
+  font-weight: 500;
+}
