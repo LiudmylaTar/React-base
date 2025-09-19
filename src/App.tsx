@@ -5,11 +5,19 @@ import Container from "./components/Container/Container";
 import Section from "./components/Section/Section";
 import CounterTab from "./tabs/CounterTab";
 import TasksTab from "./tabs/TasksTab";
+import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
+import { useContext } from "react";
+import { ThemeContext } from "./contexts/contexts";
 
 function App() {
+  const { theme } = useContext(ThemeContext);
   return (
     <Section>
       <Container>
+        <div className="themeColor">
+          <p>Current theme: {theme}</p>
+          <ThemeSwitcher />
+        </div>
         <Tabs>
           <TabList>
             <Tab>Counter</Tab>

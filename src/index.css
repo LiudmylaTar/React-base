@@ -23,16 +23,31 @@
   /*animation*/
   --animation-cubicBezier: 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.98);
 }
-
+html,
+body {
+  height: 100%; /* тягнемо на всю висоту */
+  margin: 0; /* обнуляємо відступ */
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
-  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  background-repeat: no-repeat; /* щоб фон не дублювався */
+  background-size: cover; /* розтягуємо */
+}
 
-  font-style: normal;
+.light {
+  background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
+  color: #000;
+}
+
+.dark {
+  background: linear-gradient(to bottom, #2c3e50, #000);
+  color: #f0f0f0;
+}
+
+.colorful {
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad390);
+  color: #333;
 }
 
 h1,
