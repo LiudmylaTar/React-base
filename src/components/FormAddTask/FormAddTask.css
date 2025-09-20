@@ -10,6 +10,7 @@
   font-size: 14px;
   outline: none;
   width: 180px;
+  color: inherit;
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 .input:focus,
