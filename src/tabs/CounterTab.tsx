@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import Counter from "../components/Counter/Counter";
+import { CountReduser, initialState } from "../reducer/countReducer";
 
 export default function CounterTab() {
-  const [count, setCount] = useState(1);
-  const handleAddClick = () => setCount(count + 1);
-  const handleMinusClick = () => setCount(count - 1);
+  const [state, dispatch] = useReducer(CountReduser, initialState);
+
+  const handleAddClick = () => dispatch({ type: "increment" });
+  const handleMinusClick = () => dispatch({ type: "decrement" });
+  const handleResetClick = () => dispatch({ type: "reset" });
   return (
     <>
       <Counter
         addClick={handleAddClick}
-        count={count}
+        count={state.count}
         minusClick={handleMinusClick}
+        resetClick={handleResetClick}
       />
     </>
   );

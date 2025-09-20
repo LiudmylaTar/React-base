@@ -1,0 +1,33 @@
+.filterContainer {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.filterBtn {
+  border: 1px solid blueviolet;
+  padding: 4px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+.filterBtn:hover,
+.filterBtn:focus {
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+  border: 1px solid #088565;
+}
+.active {
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+  border: 1px solid #088565;
+  position: relative;
+}
+.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 1px;
+  background-color: currentColor;
+  border-radius: 2px;
+}

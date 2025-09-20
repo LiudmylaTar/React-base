@@ -4,8 +4,14 @@ type CounterProps = {
   count: number;
   addClick: () => void;
   minusClick: () => void;
+  resetClick: () => void;
 };
-export default function Counter({ addClick, count, minusClick }: CounterProps) {
+export default function Counter({
+  addClick,
+  count,
+  minusClick,
+  resetClick,
+}: CounterProps) {
   return (
     <div className="countWrapper">
       <h2>Counter</h2>
@@ -16,6 +22,9 @@ export default function Counter({ addClick, count, minusClick }: CounterProps) {
         </button>
         <button className="btnCount" onClick={minusClick}>
           Click minus -1
+        </button>
+        <button className="btnCount" onClick={resetClick}>
+          Reset
         </button>
       </div>
     </div>

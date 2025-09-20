@@ -1,20 +1,15 @@
-
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import FormAddTask from "../components/FormAddTask/FormAddTask";
 import TasksList from "../components/TaskList/TaskList";
 import type { Task } from "../types";
 import "./TasksTab.css";
-
-const initialTasks: Task[] = [
-  { id: "id-1", text: "Create repositore", completed: false },
-  { id: "id-2", text: "Create progect", completed: false },
-  { id: "id-3", text: "Create counter component", completed: false },
-  { id: "id-4", text: "Create task list", completed: false },
-
-];
+import Filter from "../components/Filter/Filter";
+import { initialTasks } from "../mockData/initialData";
+import { filterReducer } from "../reducer/filterReducer";
 
 export default function TasksTab() {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const [filter, dispatch] = useReducer(filterReducer, "All");
 
   const handleAddTask = (taskText: string) => {
     const newTask: Task = {
@@ -35,14 +30,22 @@ export default function TasksTab() {
   const handleClearCompleted = () => {
     setTasks((prev) => prev.filter((task) => !task.completed));
   };
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "Active") return !task.completed;
+    if (filter === "Complete") return task.completed;
+    return true; // All
+  });
 
   const hasCompleted = tasks.some((task) => task.completed);
+
   return (
     <section className="taskSection">
       <h2 className="title">List of your tasks</h2>
+
       <FormAddTask onSubmit={handleAddTask} />
-      <TasksList startTasks={tasks} onToggle={handleToggle} />
-      {hasCompleted && (
+      <Filter dispatch={dispatch} currentFilter={filter} />
+      <TasksList startTasks={filteredTasks} onToggle={handleToggle} />
+      {hasCompleted && filter !== "Active" && (
         <button className="clearButton" onClick={handleClearCompleted}>
           ❌ Clear Finished Tasks
         </button>
