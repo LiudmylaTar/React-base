@@ -1,4 +1,5 @@
 .countWrapper {
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,6 +7,7 @@
 }
 .countText {
   padding: 16px 0px;
+  font-size: var(--font-medium);
 }
 .btnWrapper {
   display: flex;
@@ -15,6 +17,7 @@
   border: 1px solid rgb(199, 161, 80);
   padding: 4px 8px;
   border-radius: 6px;
+  font-size: var(--font-small);
   transition: background-color 0.2s ease;
 }
 .btnCount:hover,

@@ -18,7 +18,7 @@ export default function TaskItem({ data, onToggle }: TaskItemProps) {
       {data.completed ? (
         <span className="complete">Complete ✅</span>
       ) : (
-        <span className="progress">To be done</span>
+        <span className="progress">Active</span>
       )}
     </div>
   );

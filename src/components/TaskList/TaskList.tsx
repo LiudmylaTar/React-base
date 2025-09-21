@@ -1,3 +1,4 @@
+import React from "react";
 import type { Task } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
 
@@ -6,7 +7,10 @@ interface TasksListProps {
   onToggle: (id: string) => void;
 }
 
-export default function TasksList({ startTasks, onToggle }: TasksListProps) {
+export default React.memo(function TasksList({
+  startTasks,
+  onToggle,
+}: TasksListProps) {
   return (
     <ul className="list">
       {startTasks.map((task) => (
@@ -16,4 +20,4 @@ export default function TasksList({ startTasks, onToggle }: TasksListProps) {
       ))}
     </ul>
   );
-}
+});
