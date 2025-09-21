@@ -5,7 +5,7 @@ interface FormAddTaskProps {
   onSubmit: (taskText: string) => void;
 }
 
-export default function FormAddTask({ onSubmit }: FormAddTaskProps) {
+export default React.memo(function FormAddTask({ onSubmit }: FormAddTaskProps) {
   const [value, setValue] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -17,6 +17,7 @@ export default function FormAddTask({ onSubmit }: FormAddTaskProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <input
@@ -33,4 +34,4 @@ export default function FormAddTask({ onSubmit }: FormAddTaskProps) {
       </button>
     </form>
   );
-}
+});

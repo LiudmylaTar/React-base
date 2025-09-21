@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import FormAddTask from "../components/FormAddTask/FormAddTask";
 import TasksList from "../components/TaskList/TaskList";
 import type { Task } from "../types";
@@ -8,33 +8,43 @@ import { initialTasks } from "../mockData/initialData";
 import { filterReducer } from "../reducer/filterReducer";
 
 export default function TasksTab() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("TasksList");
+    return savedTasks ? JSON.parse(savedTasks) : initialTasks;
+  });
   const [filter, dispatch] = useReducer(filterReducer, "All");
 
-  const handleAddTask = (taskText: string) => {
+  useEffect(() => {
+    localStorage.setItem("TasksList", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const handleAddTask = useCallback((taskText: string) => {
     const newTask: Task = {
       id: `id-${Date.now()}`,
       text: taskText,
       completed: false,
     };
     setTasks((prev) => [...prev, newTask]);
-  };
+  }, []);
 
-  const handleToggle = (id: string) => {
+  const handleToggle = useCallback((id: string) => {
     setTasks((prev) =>
       prev.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
-  };
-  const handleClearCompleted = () => {
+  }, []);
+
+  const handleClearCompleted = useCallback(() => {
     setTasks((prev) => prev.filter((task) => !task.completed));
-  };
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === "Active") return !task.completed;
-    if (filter === "Complete") return task.completed;
-    return true; // All
-  });
+  }, []);
+  const filteredTasks = useMemo(() => {
+    return tasks.filter((task) => {
+      if (filter === "Active") return !task.completed;
+      if (filter === "Complete") return task.completed;
+      return true;
+    });
+  }, [tasks, filter]);
 
   const hasCompleted = tasks.some((task) => task.completed);
 

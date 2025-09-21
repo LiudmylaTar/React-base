@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext, type Theme } from "../../contexts/contexts";
 import "./ThemeSwitcher.css";
 
-export default function LangSwitcher() {
+export default function ThemeSwitcher() {
   const ctx = useContext(ThemeContext);
   if (!ctx) {
     throw new Error("ThemeSwitcher must be used within ThemeColorProvider");
@@ -14,7 +14,12 @@ export default function LangSwitcher() {
   };
 
   return (
-    <select className="selector" value={theme} onChange={handleChange}>
+    <select
+      name="theme"
+      className="selector"
+      value={theme}
+      onChange={handleChange}
+    >
       <option value="light">Light</option>
       <option value="dark">Dark</option>
       <option value="colorful">Colorful</option>
